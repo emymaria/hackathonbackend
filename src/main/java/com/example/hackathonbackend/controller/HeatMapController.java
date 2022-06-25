@@ -2,7 +2,6 @@ package com.example.hackathonbackend.controller;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.hackathonbackend.entity.Customerproduct;
 import com.example.hackathonbackend.entity.HeatDataEntity;
 import com.example.hackathonbackend.entity.ProductEntity;
+import com.example.hackathonbackend.repository.CustomerProductRepository;
 import com.example.hackathonbackend.repository.ProductRepository;
 import com.example.hackathonbackend.service.HeatMapService;
 
@@ -23,10 +24,13 @@ public class HeatMapController {
 
     private final HeatMapService heatMapService;
     private final ProductRepository productRepository;
+    private final CustomerProductRepository customerProductRepository;
 
-    public HeatMapController(HeatMapService heatMapService, ProductRepository productRepository) {
+    public HeatMapController(HeatMapService heatMapService, ProductRepository productRepository,
+                             CustomerProductRepository customerProductRepository) {
         this.heatMapService = heatMapService;
         this.productRepository = productRepository;
+        this.customerProductRepository = customerProductRepository;
     }
 
     @PostMapping("/heatmap")
@@ -57,6 +61,11 @@ public class HeatMapController {
     @GetMapping("/basf/ingredients")
     public List<ProductEntity> getIngredients(){
         return productRepository.findAll();
+    }
+
+    @PostMapping("/basf/db/products")
+    public List<Customerproduct> postProducts(@RequestBody List<Customerproduct> productList ){
+        return customerProductRepository.saveAll(productList);
     }
 }
 

@@ -17,10 +17,32 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr  th:each="result: ${result}">
+                <tr  th:each="result: ${results}">
                     <td th:text="${result.getName()}"></td>
                     <td th:text="${result.getSustainabilityScore()}"></td>
                     <td th:text="${result.getProductSegments()}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="display: flex;justify-content: center" th:unless="${#lists.isEmpty(similarProducts)}" >
+        <div style="max-width: fit-content;padding-top: 5%">
+            <table class="table table-striped table-dark" >
+                <thead>
+                <tr id="headers2">
+                    <th scope="col">Product</th>
+                    <th scope="col">Ingredients</th>
+                    <th scope="col">Sustainability Meter</th>
+                    <th scope="col">link</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  th:each="similiarProduct: ${similarProducts}">
+                    <td th:text="${similiarProduct.getName()}"></td>
+                    <td th:text="${similiarProduct.getSustainabilityMeter()}"></td>
+                    <td th:text="${similiarProduct.getIngredients()}"></td>
+                    <td ><a th:href="@{${similiarProduct.getLink()}}"/> Click to Buy</td>
                 </tr>
                 </tbody>
             </table>
