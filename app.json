@@ -1,0 +1,8 @@
+{
+  "name": "basfhackathon",
+  "buildpacks": [
+    {
+      "url": "heroku/maven"
+    }
+  ]
+}
