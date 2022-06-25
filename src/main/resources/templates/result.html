@@ -40,8 +40,8 @@
                 <tbody>
                 <tr  th:each="similiarProduct: ${similarProducts}">
                     <td th:text="${similiarProduct.getName()}"></td>
-                    <td th:text="${similiarProduct.getSustainabilityMeter()}"></td>
                     <td th:text="${similiarProduct.getIngredients()}"></td>
+                    <td th:text="${similiarProduct.getSustainabilityMeter()}"></td>
                     <td ><a th:href="@{${similiarProduct.getLink()}}"/> Click to Buy</td>
                 </tr>
                 </tbody>
